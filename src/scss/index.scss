@@ -1,0 +1,238 @@
+$backgroundColor: #060a3d;
+$color: #fff;
+$color1: #868aaf;
+$color2: #db3baa;
+$color2-dark: darken($color2, 10%);
+$color2-dark: darken($color2, 30%);
+$color3: #0025f1;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#player {
+  height: 100%;
+  background: $backgroundColor;
+  .header {
+    text-align: center;
+    height: 110px;
+    h1 {
+      color: $color;
+      font-size: 20px;
+      padding-top: 20px;
+    }
+    p {
+      color: $color1;
+      font-size: 12px;
+    }
+    .balls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      span {
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $color2-dark;
+        margin: 0 4px;
+
+        &.current {
+          width: 8px;
+          height: 8px;
+          background: $color2;
+        }
+      }
+    }
+  }
+  .panels {
+    height: calc(100% - 270px);
+    align-items: center;
+    width: 100vw;
+    display: flex;
+    transition: transform 0.3s;
+    overflow: visible;
+    &.panel1 {
+      transform: translateX(0vw);
+    }
+    &.panel2 {
+      transform: translateX(-100vw);
+    }
+    .panel-effect {
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+      .effect {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40vh;
+        > div {
+          background: contain;
+          position: absolute;
+        }
+        .effect-1 {
+          background: url(../svg/effect-no-move.svg) 0 0 no-repeat;
+          width: 70vw;
+          height: 70vw;
+          animation: rotate 20s linear infinite;
+        }
+        .effect-2 {
+          background: url(../svg/effect-move1.svg) 0 0 no-repeat;
+          width: 60vw;
+          height: 60vw;
+          animation: rotate 10s linear infinite reverse;
+        }
+        .effect-3 {
+          background: url(../svg/effect-move2.svg) 0 0 no-repeat;
+          width: 24vw;
+          height: 24vw;
+          animation: rotate 10s linear infinite;
+        }
+      }
+      .lyrics {
+        text-align: center;
+        p {
+          font-size: 13px;
+          color: $color1;
+          margin-top: 8px;
+
+          &.current {
+            color: $color;
+          }
+        }
+      }
+    }
+    .panel-lyrics {
+      position: relative;
+      flex-shrink: 0;
+      width: 100vw;
+      height: 100%;
+      text-align: center;
+      line-height: 2;
+      overflow: hidden;
+      
+      .container {
+        transition: all .3s;
+        transform: translateY(-100px);
+        p {
+          font-size: 14px;
+          color: $color1;
+  
+          &.current {
+            color: $color;
+          }
+        }
+      }
+      .maoboli {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(6, 10, 61, 0.822), rgba(6, 10, 61, 0), rgba(6, 10, 61, 0.829));
+      }
+    }
+  }
+
+  .footer {
+    height: 160px;
+    .buttons {
+      display: flex;
+      justify-content: center;
+
+      > svg,
+      > div {
+        width: 24px;
+        height: 24px;
+        margin: 0 20px;
+      }
+    }
+    .area-bar {
+      color: $color1;
+      font-size: 12px;
+      display: flex;
+      padding: 0 20px;
+      margin-top: 20px;
+      align-items: center;
+      .time-start {
+        order: 1;
+        width: 32px;
+      }
+      .time-end {
+        order: 3;
+        width: 32px;
+      }
+      .bar {
+        order: 2;
+        flex: 1;
+        height: 4px;
+        background: $color3;
+        border-radius: 2px;
+        margin: 0 18px;
+        .progress {
+          width: 0%;
+          height: 100%;
+          border-radius: 2px;
+          background: $color2;
+          position: relative;
+          .progress-button {
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: url(../svg/progress.svg) 0 0 no-repeat;
+            background-size: 12px 12px;
+            background-position: center;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 0 20px;
+      .play-pause {
+        width: 50px;
+        height: 50px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("../svg/播放.svg");
+        &.playing {
+          background-image: url("../svg/暂停.svg");
+        }
+      }
+      img {
+        width: 33px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
